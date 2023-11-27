@@ -46,8 +46,4 @@ locals {
     local.nodes_custom_setup_base64 :
     ""
   )
-
-
-
-
 }

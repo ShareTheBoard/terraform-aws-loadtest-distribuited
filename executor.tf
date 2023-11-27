@@ -20,7 +20,10 @@ locals {
     }
   }
 
-  executor        = lookup(local.executors, var.executor, "")
+  executor        = lookup(local.executors, var.executor, {
+    nodes_ips = join(",", aws_instance.nodes.*.private_ip)
+    leader_ip = local.leader_private_ip
+  })
   waiting_command = "while [ ! -f /tmp/finished-setup ]; do echo 'waiting setup to be instaled'; sleep 5; done"
   nodes_ips       = local.executor.nodes_ips
 
