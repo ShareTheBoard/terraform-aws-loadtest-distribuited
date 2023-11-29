@@ -20,6 +20,14 @@ resource "aws_security_group" "loadtest" {
     protocol    = "TCP"
     cidr_blocks = var.web_cidr_ingress_blocks
   }
+  
+  ingress {
+    description = "locust HTTP"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "TCP"
+    cidr_blocks = var.web_cidr_ingress_blocks
+  }
 
   ingress {
     description = "HTTPS"
